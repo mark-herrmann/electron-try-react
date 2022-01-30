@@ -71,82 +71,71 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 ## Set up an electron-react-project for native desktop applications
-based: https://www.section.io/engineering-education/desktop-application-with-react/
+based on:
+* [Getting Started with Electron by Creating a React App](https://www.section.io/engineering-education/desktop-application-with-react/)
+* [samuelmeuli/action-electron-builder](https://github.com/samuelmeuli/action-electron-builder)
 
+Follow these steps to set up a new electron-react-app-project:
+
+### project setup
 * run following commands
-```bash
-npx create-react-app <desired-project-directory-name>
-cd <desired-project-directory-name>
-rm -rf .git
-npm i -D electron electron-is-dev
-npm i -D concurrently wait-on
-```
+  ```bash
+  npx create-react-app <desired-project-directory-name>
+  cd <desired-project-directory-name>
+  rm -rf .git
+  npm i -D electron electron-is-dev
+  npm i -D concurrently wait-on
+  ```
 * Open the project in your IDE
-* Create the file *public/electron.js* \
-  with following content
-  ```js
-  const path = require('path');
+* Copy *public/electron.js* into your project
+* copy package.json to your repository
+  and modify names, descriptions, categories and so on to match your project
+* copy the directory *resources* into your project
+  and replace all Icons by new ones, suitable for your app
+* Copy the directory *.github* into your project
+* Copy the file *triggerRelease* into your project and make it executable
   
-  const { app, BrowserWindow } = require('electron');
-  const isDev = require('electron-is-dev');
-  
-  function createWindow() {
-      // Create the browser window.
-      const win = new BrowserWindow({
-          width: 800,
-          height: 600,
-          webPreferences: {
-              nodeIntegration: true,
-          }
-      });
-  
-      // and load the index.html of the app.
-      // win.loadFile("index.html");
-      win.loadURL(
-          isDev
-              ? 'http://localhost:3000'
-              : `file://${path.join(__dirname, '../build/index.html')}`
-      ).then();
-      // Open the DevTools.
-      if (isDev) {
-          win.webContents.openDevTools({ mode: 'detach' });
-      }
-  }
-  
-  // This method will be called when Electron has finished
-  // initialization and is ready to create browser windows.
-  // Some APIs can only be used after this event occurs.
-  app.whenReady().then(createWindow);
-  
-  // Quit when all windows are closed, except on macOS. There, it's common
-  // for applications and their menu bar to stay active until the user quits
-  // explicitly with Cmd + Q.
-  app.on('window-all-closed', () => {
-      if (process.platform !== 'darwin') {
-          app.quit();
-      }
-  });
-  
-  app.on('activate', () => {
-      if (BrowserWindow.getAllWindows().length === 0) {
-          createWindow();
-      }
-  });
+### Push the project to gitHub
+* Go to gitHub and create a new repository (empty)
+* Open a terminal and run following commands
   ```
-* add following line to *package.json* (root object)
-  ```json
-  "main": "public/electron.js",
+  git init
+  git add .
+  git commit -m "initial commit"
+  git remote add origin <repository-url>
+  git branch -M main
+  git push -u origin main
   ```
-* modify the *scripts* section in *package.json* to look as follows:
-  ```json
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dev": "concurrently -k \"BROWSER=none npm start\" \"npm:electron\"",
-    "electron": "wait-on tcp:3000 && electron ."
-  },
+  
+### setup snap
+* Go to [your snaps](https://snapcraft.io/snaps) and register a nice snap name \
+  The snap has to match the name defined in *package.json*
+* Open a terminal and run following command
+  ```bash
+  snapcraft export-login --snaps <snap-name> -
   ```
+  This will generate a macaroon token (base64-encoded). \
+  Copy it
+* Go to gitHub, to your repository
+* Go to *Settings->Secrets->Actions*
+* Click *New repository secret*
+* Paste the copied base64-encoded token
+* Give the token the name *snapcraft_token*
 
-TBC
+## Release/Build
+Simply execute the *triggerRelease.sh* \
+This will create an empty commit with message of the last commit, \
+tag it with the version, defined in *package.json* \
+and execute *git push && git push --tags*. \
+This will trigger the gitHub action, to build the application binaries, \
+push them to a new gitHub release and push the created snap file to snapcraft
+
+## Important
+* The version, defined in *package.json* have to match the semantic versioning naming conventions. \
+  Examples of allowed versions:
+  * 1.2.3
+  * 4.5.6-alpha.7
+  * 8.9.10-beta.11
+  * 12.13.14-rc15
+* Before you can release the same version again, you have to delete the gitHub release for this version
+* The name, defined in *package.json* should never contain underscores, dashes or spaces
