@@ -1,14 +1,14 @@
 {
   "name": "electronreact",
-  "repository": "github:mark-herrmann/electron-react-boilerplate",
-  "homepage": "https://github.com/mark-herrmann/electron-react-boilerplate/",
+  "repository": "github:mark-herrmann/electron-try-react",
+  "homepage": "https://github.com/mark-herrmann/electron-try-react/",
   "description": "electron react boilerplate",
   "author": {
     "name": "Mark Herrmann",
     "email": "mark-herrmann@mailbox.org",
-    "url": "https://github.com/mark-herrmann/electron-react-boilerplate"
+    "url": "https://github.com/mark-herrmann/electron-try-react"
   },
-  "version": "0.0.1-alpha.2",
+  "version": "1.0.0-alpha.1",
   "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
