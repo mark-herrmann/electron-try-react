@@ -1,24 +1,15 @@
 {
   "name": "electronreact",
-  "repository": "github:mark-herrmann/electron-try-react",
-  "homepage": "https://github.com/mark-herrmann/electron-try-react/",
-  "description": "used for Proofs of concept",
+  "repository": "github:mark-herrmann/electron-react-boilerplate",
+  "homepage": "https://github.com/mark-herrmann/electron-react-boilerplate/",
+  "description": "electron react boilerplate",
   "author": {
-    "name": "Mark Tester",
+    "name": "Mark Herrmann",
     "email": "mark-herrmann@mailbox.org",
-    "url": "https://github.com/mark-herrmann/electron-try-react"
+    "url": "https://github.com/mark-herrmann/electron-react-boilerplate"
   },
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
   "license": "MIT",
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "5.0.0",
-    "web-vitals": "^2.1.4"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -26,31 +17,6 @@
     "eject": "react-scripts eject",
     "dev": "concurrently -k \"BROWSER=none npm start\" \"npm:electron\"",
     "electron": "wait-on tcp:3000 && electron ."
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "concurrently": "^7.0.0",
-    "electron": "^16.0.8",
-    "electron-builder": "^22.14.5",
-    "electron-is-dev": "^2.0.0",
-    "wait-on": "^6.0.0"
   },
   "main": "public/electron.js",
   "build": {
@@ -83,9 +49,9 @@
         "snap"
       ],
       "desktop": {
-        "Name": "Electron React",
+        "Name": "Electron React Boilerplate",
         "Type": "Application",
-        "GenericName": "Example Application"
+        "GenericName": "Boilerplate"
       }
     },
     "dmg": {
@@ -97,6 +63,40 @@
       "./node_modules/**/*",
       "./public/**/*",
       "*.js"
+    ]
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "5.0.0",
+    "web-vitals": "^2.1.4",
+    "electron-is-dev": "^2.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "electron": "^16.0.8",
+    "electron-builder": "^22.14.5",
+    "wait-on": "^6.0.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ]
   }
 }
