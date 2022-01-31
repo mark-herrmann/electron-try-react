@@ -78,22 +78,12 @@ based on:
 Follow these steps to set up a new electron-react-app-project:
 
 ### project setup
-* run following commands
-  ```bash
-  npx create-react-app <desired-project-directory-name>
-  cd <desired-project-directory-name>
-  rm -rf .git
-  npm i -D electron electron-is-dev
-  npm i -D concurrently wait-on
-  ```
-* Open the project in your IDE
-* Copy *public/electron.js* into your project
-* copy package.json to your repository
-  and modify names, descriptions, categories and so on to match your project
-* copy the directory *resources* into your project
-  and replace all Icons by new ones, suitable for your app
-* Copy the directory *.github* into your project
-* Copy the file *triggerRelease* into your project and make it executable
+* clone this repo
+* create a directory with a nice project name
+* copy all contents of this repo to the new directory
+* open your new project with an IDE
+* in *package.json* modify names, descriptions, categories and so on to match your project
+* in *resources* replace all icons by new ones, suitable for your app
   
 ### Push the project to gitHub
 * Go to gitHub and create a new repository (empty)
